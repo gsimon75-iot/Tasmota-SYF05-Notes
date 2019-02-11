@@ -76,7 +76,7 @@ The narrower end has E27 threads that match the mains connector casing,
 and the broader end connects to the heatsink with a threaded joint,
 that is also glued together.
 
-The glue between those threads holds firm, so I couldn't loosen it.
+The glue between those threads holds firm, so at first I couldn't even loosen it.
 
 There are two (on other models three) small holes just below the
 heatsink, most probably to prevent air pressure buildup when the
@@ -97,9 +97,6 @@ On the inside it seems to be assembled from two parts:
 - lower heatsink whose inner diameter is 30 mm and has 3 grooves on the
   inside at even angles, it has an extrusion at the top with outer diameter of 35 mm
 - top part, glued to that extrusion
-
-Additionally, there are 3 inward-pointing screws or rivets near the plastic joiner,
-but those have no apparent signs on the outside, as if they were completely machined off.
 
 As the PCB is right in the middle, so the grooves serve no purpose here.
 
@@ -164,6 +161,30 @@ So I chose the long path:
 
 5. Pushed the LED PCB off the heatsink, it also pulled the controller PCB along
    with it.
+
+
+To make re-assembling easier, I wanted to separate the heatsink from the joiner anyway.
+Forcing them wouldn't work, because the joiner is a soft plastic item and it would
+deform sooner than the glue lets it go.
+
+At least at room temperature :). So:
+
+1. Put the glued parts in the deep freezer, cool them to -10 &deg;C
+2. Boil a glass of water, enough to sink at least half of the heatsink into it
+3. Prepare a kitchen towel and a plier that's large enough to grab the joiner part
+3. If the parts have cooled down, take them out and **immediately** put the heatsink part into the boiling water, heating it to 100 &deg;C
+4. The joiner is made of plastic, it's a bad heat conductor, so for a few seconds it'll stay cold, while the heatsink will heat up very quickly.
+5. If you feel that the heatsink is hot even at the joiner, yank it out of the water, grab the heatsink with the towel, the joiner with the plier, and unscrew the joiner from the heatsink
+
+### The math :)
+
+Aluminium has a linear thermal expansion coefficient of 23.1 * 10<sup>-6</sup> 1/K, that means that if we heat it from 23 &deg;C room temperature to 100 &deg;C, it means a &Delta;T = 77 K, so the expansion factor will be a<sub>hot</sub> = 1 + &alpha; * &Delta;T = 1.0017787
+
+The joiner is some kind of soft plastic, maybe polyethylene, let's assume its &alpha; = 150 * 10<sup>-6</sup> 1/K, so if we cool it down to -10 &deg;C, it means a &Delta;T = -33K, so the contraction factor will be a<sub>cold</sub> = 1 + &alpha; * &Delta;T = 0.995
+
+If the common radius on room temperature is R = 16 mm, then the hot external radius will R * a<sub>hot</sub>, the cold inner radius will be R * a<sub>cold</sub>, so the gap will be R * (a<sub>hot</sub> - a<sub>cold</sub>) = 16 mm * 0.0067787 = 0.108 mm
+
+That 0.1 mm is just enough to stretch that glue film between the threads, so it'll let go :).
 
 
 ## Wiring
